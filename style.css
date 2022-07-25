@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+#display {
+  width: 200px;
+  height: 30px;
+  border: solid 1px black;
+  text-align: end;
+}
+
+.container {
+  display: flex;
+}
+
+/* .numpad {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  gap: 2px;
+} */
+
+.group-1,
+.group-2,
+.group-3,
+.group-4 {
+  display: flex;
+}
+
+.numpad button {
+  background: none;
+  height: 50px;
+  width: 50px;
+  outline: none;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  padding: 0;
+}
+
+.numpad .zero {
+  width: 100px;
+}
+
+.numpad button:hover {
+  background-color: grey;
+}
+
+.numpad button:active {
+  background-color: rgb(182, 182, 182);
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+}
+
+.operators button {
+  background: none;
+  height: 50px;
+  width: 50px;
+  outline: none;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  padding: 0;
+}
+
+.operators button:hover {
+  background-color: rgb(216, 123, 16);
+}
+
+.operators button:active {
+  background-color: rgb(211, 154, 48);
+}
