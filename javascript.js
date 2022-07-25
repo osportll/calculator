@@ -40,15 +40,29 @@ function multiply(...args) {
 
 //console.log(multiply(100, 2));
 
+let result;
+
 function operate(operator, num1, num2) {
   if (operator === '+') {
-    console.log(add(num1, num2));
+    result = add(num1, num2);
+    console.log(result);
+    display.textContent = result;
+    return result;
   } else if (operator === '-') {
-    substract(num1, num2);
+    result = substract(num1, num2);
+    console.log(result);
+    display.textContent = result;
+    return result;
   } else if (operator === '/') {
-    divide(num1, num2);
+    result = divide(num1, num2);
+    console.log(result);
+    display.textContent = result;
+    return result;
   } else if (operator === '*') {
-    multiply(num1, num2);
+    result = multiply(num1, num2);
+    console.log(result);
+    display.textContent = result;
+    return result;
   }
 }
 
@@ -68,13 +82,13 @@ numbers.forEach((buttons) => {
   buttons.addEventListener('click', () => {
     let displayValue = buttons.value;
     display.textContent += displayValue;
-    console.log(displayValue);
 
     if (!operatorIsClicked) {
       firstNumber += displayValue;
       console.log(firstNumber);
     } else {
       secondNumber += displayValue;
+      display.textContent = secondNumber;
       console.log(secondNumber);
     }
   });
@@ -85,6 +99,12 @@ operators.forEach((operator) => {
     operatorIsClicked = true;
     if (operator.className === 'add') {
       operation = '+';
+    } else if (operator.className === 'substract') {
+      operation = '-';
+    } else if (operator.className === 'divide') {
+      operation = '/';
+    } else if (operator.className === 'multiply') {
+      operation = '*';
     }
 
     if (operator.className === 'equal') {
