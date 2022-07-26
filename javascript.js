@@ -1,5 +1,6 @@
 let display = document.querySelector('#display');
 let numbers = document.querySelectorAll('#numbers');
+let clear = document.querySelector('.clear');
 
 let operators = document.querySelectorAll('#ope');
 
@@ -69,13 +70,6 @@ function operate(operator, num1, num2) {
 let firstNumber = '';
 let secondNumber = '';
 let operation;
-
-/* 
-   1. If operator is clicked, display.value should be the numbers that are currently on the display. This value should be stored in firstNumber variable.
-
-   2. When a number is cicked AFTER clicking the operator, the display should reset and a new display.value should be created. This new value should be stored in the secondNumber variable.
-*/
-
 let operatorIsClicked = false;
 
 numbers.forEach((buttons) => {
@@ -111,4 +105,11 @@ operators.forEach((operator) => {
       return operate(operation, Number(firstNumber), Number(secondNumber));
     }
   });
+});
+
+clear.addEventListener('click', () => {
+  operatorIsClicked = false;
+  firstNumber = '';
+  secondNumber = '';
+  display.textContent = '';
 });
