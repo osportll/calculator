@@ -1,13 +1,14 @@
 let display = document.querySelector('#display');
-let numbers = document.querySelectorAll('#numbers');
+let numbers = document.querySelectorAll('.numbers');
 let clear = document.querySelector('.clear');
-
-let operators = document.querySelectorAll('#ope');
-
+let equal = document.querySelector('.equal');
+let operators = document.querySelectorAll('.ope');
 let sum = document.querySelector('.add');
 let subs = document.querySelector('.substract');
 let division = document.querySelector('.divide');
 let mult = document.querySelector('.multiply');
+
+let lalas = document.querySelectorAll('.lala');
 
 function add(...args) {
   return args.reduce((x, y) => {
@@ -41,29 +42,17 @@ function multiply(...args) {
 
 //console.log(multiply(100, 2));
 
-let result;
+let operateResult;
 
 function operate(operator, num1, num2) {
   if (operator === '+') {
-    result = add(num1, num2);
-    console.log(result);
-    display.textContent = result;
-    return result;
+    return (operateResult = add(num1, num2));
   } else if (operator === '-') {
-    result = substract(num1, num2);
-    console.log(result);
-    display.textContent = result;
-    return result;
+    return (operateResult = substract(num1, num2));
   } else if (operator === '/') {
-    result = divide(num1, num2);
-    console.log(result);
-    display.textContent = result;
-    return result;
+    return (operateResult = divide(num1, num2));
   } else if (operator === '*') {
-    result = multiply(num1, num2);
-    console.log(result);
-    display.textContent = result;
-    return result;
+    return (operateResult = multiply(num1, num2));
   }
 }
 
@@ -80,7 +69,7 @@ numbers.forEach((buttons) => {
     if (!operatorIsClicked) {
       firstNumber += displayValue;
       console.log(firstNumber);
-    } else {
+    } else if (operatorIsClicked) {
       secondNumber += displayValue;
       display.textContent = secondNumber;
       console.log(secondNumber);
@@ -91,18 +80,14 @@ numbers.forEach((buttons) => {
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
     operatorIsClicked = true;
-    if (operator.className === 'add') {
+    if (operator.className.includes('add')) {
       operation = '+';
-    } else if (operator.className === 'substract') {
+    } else if (operator.className.includes('substract')) {
       operation = '-';
-    } else if (operator.className === 'divide') {
+    } else if (operator.className.includes('divide')) {
       operation = '/';
-    } else if (operator.className === 'multiply') {
+    } else if (operator.className.includes('multiply')) {
       operation = '*';
-    }
-
-    if (operator.className === 'equal') {
-      return operate(operation, Number(firstNumber), Number(secondNumber));
     }
   });
 });
@@ -112,4 +97,43 @@ clear.addEventListener('click', () => {
   firstNumber = '';
   secondNumber = '';
   display.textContent = '';
+});
+
+let result;
+
+equal.addEventListener('click', () => {
+  if (parsed && !isNaN(parsed[0])) {
+    result = Number(parsed[0]);
+    console.log(result);
+
+    for (let i = 1; i < newLalaStr.length - 1; i++) {
+      if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
+        result = operate(parsed[i], result, Number(parsed[i + 1]));
+        console.log(parsed[i], result, parsed[i + 1]);
+      }
+    }
+    console.log(result);
+
+    display.textContent = result;
+  }
+});
+
+let lalaArr = [];
+let parsed;
+let newLalaStr;
+
+lalas.forEach((lala) => {
+  lala.addEventListener('click', () => {
+    lalaArr.push(lala.id);
+    newLalaStr = lalaArr.join('');
+
+    console.log(newLalaStr);
+
+    regex = /\d+|[-+\*\/]/g;
+    parsed = newLalaStr.match(regex);
+
+    console.log(parsed);
+
+    return parsed, newLalaStr;
+  });
 });
