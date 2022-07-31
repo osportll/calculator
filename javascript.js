@@ -8,7 +8,7 @@ let subs = document.querySelector('.substract');
 let division = document.querySelector('.divide');
 let mult = document.querySelector('.multiply');
 
-let lalas = document.querySelectorAll('.lala');
+let chainOp = document.querySelectorAll('.chain-op');
 
 function add(...args) {
   return args.reduce((x, y) => {
@@ -56,26 +56,25 @@ function operate(operator, num1, num2) {
   }
 }
 
-let firstNumber = '';
-let secondNumber = '';
+// let firstNumber = '';
+// let secondNumber = '';
 let operation;
 let operatorIsClicked = false;
 
-numbers.forEach((buttons) => {
-  buttons.addEventListener('click', () => {
-    let displayValue = buttons.value;
-    display.textContent += displayValue;
-
-    if (!operatorIsClicked) {
-      firstNumber += displayValue;
-      console.log(firstNumber);
-    } else if (operatorIsClicked) {
-      secondNumber += displayValue;
-      display.textContent = secondNumber;
-      console.log(secondNumber);
-    }
+/* numbers.forEach((button) => {
+    button.addEventListener('click', () => {
+        let displayValue = buttons.value;
+         display.textContent += displayValue;
+         if (!operatorIsClicked) {
+           firstNumber += displayValue;
+           console.log(firstNumber);
+         } else if (operatorIsClicked) {
+           secondNumber += displayValue;
+           display.textContent = secondNumber;
+           console.log(secondNumber);
+         }
   });
-});
+}); */
 
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
@@ -93,47 +92,69 @@ operators.forEach((operator) => {
 });
 
 clear.addEventListener('click', () => {
-  operatorIsClicked = false;
-  firstNumber = '';
-  secondNumber = '';
+  opArr = [];
   display.textContent = '';
 });
 
 let result;
 
 equal.addEventListener('click', () => {
-  if (parsed && !isNaN(parsed[0])) {
-    result = Number(parsed[0]);
-    console.log(result);
-
-    for (let i = 1; i < newLalaStr.length - 1; i++) {
-      if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
-        result = operate(parsed[i], result, Number(parsed[i + 1]));
-        console.log(parsed[i], result, parsed[i + 1]);
-      }
-    }
-    console.log(result);
-
-    display.textContent = result;
-  }
+  // if (parsed && !isNaN(parsed[0])) {
+  //   result = Number(parsed[0]);
+  //   for (let i = 1; i < newOpStr.length - 1; i++) {
+  //     if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
+  //       console.log(parsed[i], result, parsed[i + 1]);
+  //       result = operate(parsed[i], result, Number(parsed[i + 1]));
+  //     }
+  //   }
+  //   console.log(result);
+  //   display.textContent = result;
+  // }
 });
 
-let lalaArr = [];
+let opArr = [];
 let parsed;
-let newLalaStr;
+let newOpStr;
 
-lalas.forEach((lala) => {
-  lala.addEventListener('click', () => {
-    lalaArr.push(lala.id);
-    newLalaStr = lalaArr.join('');
+chainOp.forEach((ope) => {
+  ope.addEventListener('click', () => {
+    opArr.push(ope.id);
+    newOpStr = opArr.join('');
 
-    console.log(newLalaStr);
-
-    regex = /\d+|[-+\*\/]/g;
-    parsed = newLalaStr.match(regex);
+    let regex = /\d+|[-+\*\/]/g;
+    parsed = newOpStr.match(regex);
 
     console.log(parsed);
 
-    return parsed, newLalaStr;
+    // if (!isNaN(ope.id)) {
+    //   operatorIsClicked = false;
+    //   console.log(operatorIsClicked);
+    //   let displayValue = parsed[0];
+    //   display.textContent = displayValue;
+
+    // }
+
+    if (parsed && !isNaN(parsed[0])) {
+      result = Number(parsed[0]);
+
+      for (let i = 1; i < newOpStr.length - 1; i++) {
+        if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
+          result = operate(parsed[i], result, Number(parsed[i + 1]));
+        }
+      }
+      console.log(result);
+    }
+
+    // display.textContent = result;
+
+    for (let i = 0; i < parsed.length; i++) {
+      if (!'+-*/'.includes(parsed[i])) {
+        display.textContent = parsed[i];
+      } else if (i > 1 && operatorIsClicked) {
+        display.textContent = result;
+      }
+    }
+
+    return parsed, newOpStr;
   });
 });
