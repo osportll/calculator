@@ -13,17 +13,11 @@
   display: flex;
 }
 
-/* .numpad {
-  display: flex;
-  flex-wrap: wrap;
-  width: 200px;
-  gap: 2px;
-} */
-
 .group-1,
 .group-2,
 .group-3,
-.group-4 {
+.group-4,
+.group-5 {
   display: flex;
 }
 
@@ -42,6 +36,17 @@
   width: 100px;
 }
 
+.group-5 .equal {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  left: 108px;
+}
+
+.group-5 .clear {
+  width: 100px;
+}
+
 .numpad button:hover {
   background-color: grey;
 }
@@ -53,6 +58,7 @@
 .operators {
   display: flex;
   flex-direction: column;
+  height: 200px;
 }
 
 .operators button {

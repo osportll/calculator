@@ -1,5 +1,4 @@
 let display = document.querySelector('#display');
-let numbers = document.querySelectorAll('.numbers');
 let clear = document.querySelector('.clear');
 let equal = document.querySelector('.equal');
 let operators = document.querySelectorAll('.ope');
@@ -16,15 +15,11 @@ function add(...args) {
   });
 }
 
-//console.log(add(3, 3));
-
 function substract(...args) {
   return args.reduce((x, y) => {
     return x - y;
   });
 }
-
-//console.log(substract(100, 5));
 
 function divide(...args) {
   return args.reduce((x, y) => {
@@ -32,15 +27,11 @@ function divide(...args) {
   });
 }
 
-//console.log(divide(100, 2, 5));
-
 function multiply(...args) {
   return args.reduce((x, y) => {
     return x * y;
   });
 }
-
-//console.log(multiply(100, 2));
 
 let operateResult;
 
@@ -56,25 +47,8 @@ function operate(operator, num1, num2) {
   }
 }
 
-// let firstNumber = '';
-// let secondNumber = '';
 let operation;
 let operatorIsClicked = false;
-
-/* numbers.forEach((button) => {
-    button.addEventListener('click', () => {
-        let displayValue = buttons.value;
-         display.textContent += displayValue;
-         if (!operatorIsClicked) {
-           firstNumber += displayValue;
-           console.log(firstNumber);
-         } else if (operatorIsClicked) {
-           secondNumber += displayValue;
-           display.textContent = secondNumber;
-           console.log(secondNumber);
-         }
-  });
-}); */
 
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
@@ -99,17 +73,7 @@ clear.addEventListener('click', () => {
 let result;
 
 equal.addEventListener('click', () => {
-  // if (parsed && !isNaN(parsed[0])) {
-  //   result = Number(parsed[0]);
-  //   for (let i = 1; i < newOpStr.length - 1; i++) {
-  //     if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
-  //       console.log(parsed[i], result, parsed[i + 1]);
-  //       result = operate(parsed[i], result, Number(parsed[i + 1]));
-  //     }
-  //   }
-  //   console.log(result);
-  //   display.textContent = result;
-  // }
+  display.textContent = result;
 });
 
 let opArr = [];
@@ -126,14 +90,6 @@ chainOp.forEach((ope) => {
 
     console.log(parsed);
 
-    // if (!isNaN(ope.id)) {
-    //   operatorIsClicked = false;
-    //   console.log(operatorIsClicked);
-    //   let displayValue = parsed[0];
-    //   display.textContent = displayValue;
-
-    // }
-
     if (parsed && !isNaN(parsed[0])) {
       result = Number(parsed[0]);
 
@@ -144,8 +100,6 @@ chainOp.forEach((ope) => {
       }
       console.log(result);
     }
-
-    // display.textContent = result;
 
     for (let i = 0; i < parsed.length; i++) {
       if (!'+-*/'.includes(parsed[i])) {
