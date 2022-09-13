@@ -83,12 +83,11 @@ let newOpStr;
 chainOp.forEach((ope) => {
   ope.addEventListener('click', () => {
     opArr.push(ope.id);
+
     newOpStr = opArr.join('');
 
     let regex = /\d+|[-+\*\/]/g;
     parsed = newOpStr.match(regex);
-
-    console.log(parsed);
 
     if (parsed && !isNaN(parsed[0])) {
       result = Number(parsed[0]);
@@ -98,7 +97,6 @@ chainOp.forEach((ope) => {
           result = operate(parsed[i], result, Number(parsed[i + 1]));
         }
       }
-      console.log(result);
     }
 
     for (let i = 0; i < parsed.length; i++) {

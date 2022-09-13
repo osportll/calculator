@@ -2,11 +2,26 @@
   box-sizing: border-box;
 }
 
+.display-container {
+  width: fit-content;
+}
+
 #display {
-  width: 200px;
-  height: 30px;
+  width: 300px;
+  height: 70px;
   border: solid 1px black;
+  background-color: #cee3e4;
   text-align: end;
+  margin: 10px 10px;
+}
+
+.main-container {
+  background-color: #f7f61a;
+  width: fit-content;
+  height: fit-content;
+  padding: 15px 15px;
+  border-radius: 12px;
+  border: solid black 2px;
 }
 
 .container {
@@ -24,27 +39,49 @@
 .numpad button {
   background: none;
   height: 50px;
-  width: 50px;
+  width: 60px;
   outline: none;
   border: 1px solid black;
   cursor: pointer;
   transition: background-color 0.1s;
   padding: 0;
+  margin: 10px 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px #bebd07;
 }
 
 .numpad .zero {
-  width: 100px;
+  width: 140px;
 }
 
-.group-5 .equal {
+/* .group-5 .equal {
   width: 100px;
   height: 50px;
   position: absolute;
   left: 108px;
+} */
+
+.clearContainer .clear {
+  width: 60px;
+  background: none;
+  height: 50px;
+  outline: none;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  padding: 0;
+  background-color: #7def08;
+  margin: 10px 10px;
+  box-shadow: 2px 2px 1px #bebd07;
+  border-radius: 10px;
 }
 
-.group-5 .clear {
-  width: 100px;
+.clearContainer button:hover {
+  background-color: pink;
+}
+
+.clearContainer button:active {
+  background-color: bisque;
 }
 
 .numpad button:hover {
@@ -58,18 +95,21 @@
 .operators {
   display: flex;
   flex-direction: column;
-  height: 200px;
 }
 
 .operators button {
   background: none;
   height: 50px;
-  width: 50px;
+  width: 60px;
   outline: none;
   border: 1px solid black;
   cursor: pointer;
   transition: background-color 0.1s;
   padding: 0;
+  margin: 10px 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px #97972e;
 }
 
 .operators button:hover {
