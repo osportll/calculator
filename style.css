@@ -13,6 +13,13 @@
   background-color: #cee3e4;
   text-align: end;
   margin: 10px 10px;
+  box-shadow: inset 1px 1px 2px 2px #a1bbbd;
+  font-size: 35px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  flex-direction: column;
+  justify-content: end;
+  display: flex;
 }
 
 .main-container {
@@ -48,6 +55,7 @@
   margin: 10px 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 1px #bebd07;
+  background-color: #eeee34;
 }
 
 .numpad .zero {
@@ -77,19 +85,19 @@
 }
 
 .clearContainer button:hover {
-  background-color: pink;
+  background-color: #70d607;
 }
 
 .clearContainer button:active {
-  background-color: bisque;
+  background-color: #65b811;
 }
 
 .numpad button:hover {
-  background-color: grey;
+  background-color: #e7e713;
 }
 
 .numpad button:active {
-  background-color: rgb(182, 182, 182);
+  background-color: #d3d33a;
 }
 
 .operators {
@@ -110,12 +118,13 @@
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 2px 2px 1px #97972e;
+  background-color: #eeee34;
 }
 
 .operators button:hover {
-  background-color: rgb(216, 123, 16);
+  background-color: #e7e713;
 }
 
 .operators button:active {
-  background-color: rgb(211, 154, 48);
+  background-color: #d3d33a;
 }

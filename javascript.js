@@ -2,12 +2,34 @@ let display = document.querySelector('#display');
 let clear = document.querySelector('.clear');
 let equal = document.querySelector('.equal');
 let operators = document.querySelectorAll('.ope');
+let numbers = document.querySelectorAll('.numbers');
 let sum = document.querySelector('.add');
 let subs = document.querySelector('.substract');
 let division = document.querySelector('.divide');
 let mult = document.querySelector('.multiply');
 
 let chainOp = document.querySelectorAll('.chain-op');
+
+let numberIsClicked = false;
+
+function disableOperators() {
+  operators.forEach((operator) => {
+    if (!numberIsClicked) {
+      operator.disabled = true;
+    } else {
+      operator.disabled = false;
+    }
+  });
+}
+
+disableOperators();
+
+numbers.forEach((number) => {
+  number.addEventListener('click', () => {
+    numberIsClicked = true;
+    console.log(numberIsClicked);
+  });
+});
 
 function add(...args) {
   return args.reduce((x, y) => {
@@ -53,6 +75,7 @@ let operatorIsClicked = false;
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
     operatorIsClicked = true;
+
     if (operator.className.includes('add')) {
       operation = '+';
     } else if (operator.className.includes('substract')) {
@@ -71,14 +94,19 @@ clear.addEventListener('click', () => {
 });
 
 let result;
+let equalIsClicked = false;
 
 equal.addEventListener('click', () => {
-  display.textContent = result;
+  equalIsClicked = true;
+  let roundedResult = Math.round(result * 100) / 100;
+  display.textContent = roundedResult;
 });
 
 let opArr = [];
 let parsed;
 let newOpStr;
+
+console.log(numberIsClicked);
 
 chainOp.forEach((ope) => {
   ope.addEventListener('click', () => {
@@ -107,6 +135,10 @@ chainOp.forEach((ope) => {
       }
     }
 
+    disableOperators();
+
     return parsed, newOpStr;
   });
 });
+
+// disable operators after pressing AC and equal buttons
