@@ -2,13 +2,25 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90.5vh;
+  background-color: #eee;
+}
+
 .display-container {
   width: fit-content;
 }
 
 #display {
   width: 300px;
-  height: 70px;
+  height: 90px;
   border: solid 1px black;
   background-color: #cee3e4;
   text-align: end;
@@ -28,7 +40,7 @@
   height: fit-content;
   padding: 15px 15px;
   border-radius: 12px;
-  border: solid black 2px;
+  border: solid #a8a815 5px;
 }
 
 .container {
@@ -56,6 +68,9 @@
   border-radius: 10px;
   box-shadow: 2px 2px 1px #bebd07;
   background-color: #eeee34;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .numpad .zero {
@@ -78,18 +93,22 @@
   cursor: pointer;
   transition: background-color 0.1s;
   padding: 0;
-  background-color: #7def08;
+  background-color: #ef087d;
   margin: 10px 10px;
   box-shadow: 2px 2px 1px #bebd07;
   border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #08ef7a;
 }
 
 .clearContainer button:hover {
-  background-color: #70d607;
+  background-color: #be0663;
 }
 
 .clearContainer button:active {
-  background-color: #65b811;
+  background-color: #a50556;
 }
 
 .numpad button:hover {
@@ -119,6 +138,9 @@
   border-radius: 10px;
   box-shadow: 2px 2px 1px #97972e;
   background-color: #eeee34;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .operators button:hover {
@@ -127,4 +149,33 @@
 
 .operators button:active {
   background-color: #d3d33a;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #33332d;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  gap: 10px;
+  padding: 15px;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+a:hover {
+  color: #797975;
 }

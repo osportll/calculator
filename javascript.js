@@ -11,18 +11,8 @@ let mult = document.querySelector('.multiply');
 let chainOp = document.querySelectorAll('.chain-op');
 
 let numberIsClicked = false;
-
-function disableOperators() {
-  operators.forEach((operator) => {
-    if (!numberIsClicked) {
-      operator.disabled = true;
-    } else {
-      operator.disabled = false;
-    }
-  });
-}
-
-disableOperators();
+let result;
+console.log(result);
 
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
@@ -56,8 +46,11 @@ function multiply(...args) {
 }
 
 let operateResult;
+let operationIsDone = false;
 
 function operate(operator, num1, num2) {
+  operationIsDone = true;
+
   if (operator === '+') {
     return (operateResult = add(num1, num2));
   } else if (operator === '-') {
@@ -90,55 +83,56 @@ operators.forEach((operator) => {
 
 clear.addEventListener('click', () => {
   opArr = [];
-  display.textContent = '';
+  display.textContent = '0';
+  numberIsClicked = false;
 });
 
-let result;
 let equalIsClicked = false;
 
 equal.addEventListener('click', () => {
-  equalIsClicked = true;
-  let roundedResult = Math.round(result * 100) / 100;
-  display.textContent = roundedResult;
+  if (numberIsClicked && operationIsDone) {
+    equalIsClicked = true;
+    opArr = [];
+    opArr.push(result);
+    let roundedResult = Math.round(result * 100) / 100;
+    display.textContent = roundedResult;
+  }
 });
 
 let opArr = [];
 let parsed;
 let newOpStr;
 
-console.log(numberIsClicked);
-
 chainOp.forEach((ope) => {
   ope.addEventListener('click', () => {
-    opArr.push(ope.id);
+    if (numberIsClicked) {
+      opArr.push(ope.id);
 
-    newOpStr = opArr.join('');
+      newOpStr = opArr.join('');
 
-    let regex = /\d+|[-+\*\/]/g;
-    parsed = newOpStr.match(regex);
+      let regex = /\d+|[-+\*\/]/g;
+      parsed = newOpStr.match(regex);
+      console.log(parsed);
 
-    if (parsed && !isNaN(parsed[0])) {
-      result = Number(parsed[0]);
+      if (parsed && !isNaN(parsed[0])) {
+        result = Number(parsed[0]);
 
-      for (let i = 1; i < newOpStr.length - 1; i++) {
-        if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
-          result = operate(parsed[i], result, Number(parsed[i + 1]));
+        for (let i = 1; i < newOpStr.length - 1; i++) {
+          if ('+-*/'.includes(parsed[i]) && !isNaN(parsed[i + 1])) {
+            result = operate(parsed[i], result, Number(parsed[i + 1]));
+          }
         }
       }
-    }
 
-    for (let i = 0; i < parsed.length; i++) {
-      if (!'+-*/'.includes(parsed[i])) {
-        display.textContent = parsed[i];
-      } else if (i > 1 && operatorIsClicked) {
-        display.textContent = result;
+      for (let i = 0; i < parsed.length; i++) {
+        if (!'+-*/'.includes(parsed[i])) {
+          display.textContent = parsed[i];
+        } else if (i > 1 && operatorIsClicked) {
+          display.textContent = result;
+        }
       }
+
+      return parsed, newOpStr;
     }
-
-    disableOperators();
-
-    return parsed, newOpStr;
   });
 });
-
-// disable operators after pressing AC and equal buttons
